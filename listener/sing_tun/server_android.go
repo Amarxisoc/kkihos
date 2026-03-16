@@ -52,7 +52,8 @@ func getPackageManager() (tun.PackageManager, error) {
 func (l *Listener) buildAndroidRules(tunOptions *tun.Options) error {
 	packageManager, err := getPackageManager()
 	if err != nil {
-		return err
+		log.Warnln("[TUN] skip android rules: %v", err)
+		return nil
 	}
 	tunOptions.BuildAndroidRules(packageManager, l.handler)
 	return nil
